@@ -1,0 +1,13 @@
+This is our first open source project that use windows RPC API and open tools such as
+x.264 and avc2avi.exe.
+I made some kind of embedded directshow filters. One is source filter for elementary stream
+decode and the other is renderer filter for data capture.
+This project is based on windows directshow filter, so it requires default video decoder filters.
+
+To do list :
+  1. rate control
+  2. embed the avi mux in the client solution
+  3. open gop type support
+
+Made by kunix  :  leekunix@hanmail.net
+        boby   :  glboby27@gmail.com
