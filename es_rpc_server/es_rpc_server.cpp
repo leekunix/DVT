@@ -63,66 +63,9 @@ void __RPC_USER midl_user_free(void* p)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//sprintf_s(filename,256,"local_&&_0.es");
-	//videoType = MEDIASUBTYPE_AVC1;
-	//AvgTimePerFrame = 400000LL;
-	//gVideoWidth = 1280;
-	//gVideoHeight = 720;
-	//ThreadProc(0);
-
-	//char x264_options[1024];
-	//sprintf_s(x264_options, 1024, "x264-r2377-1ca7bb9.exe --input-depth 8 --input-res %dx%d --intra-refresh -r 2 -q 26 --b-adapt 0 --no-scenecut --keyint 15 -i 15 --bframes 0 -o %s _target_.yuv",
-	//				gVideoWidth, gVideoHeight, compress_filename);
-
-	//STARTUPINFO StartupInfo = {0,};    //구조체 선언, 초기화
-	//PROCESS_INFORMATION ProcessInfo;
-
-	//StartupInfo.cb = sizeof(STARTUPINFO);
-	////StartupInfo.dwFlags = STARTF_USESHOWWINDOW | STARTF_USEPOSITION | STARTF_USESIZE;
-	//StartupInfo.dwFlags = STARTF_USESHOWWINDOW;
-
-	////Flags 값들이 여러가지가 있습니다.
-	////STARTF_USEPOSITION :: dwX, dwY 위치 사용
-	////STARTF_USESIZE     :: dwXSize, dwYSize 사용
-	////Flags 값이 주어지지 않는 si구조체 값은
-	////새로 만들어지는 프로세스에 영향을 주지 않습니다.
-	//StartupInfo.dwX = 100;
-	//StartupInfo.dwY = 100;
-	//StartupInfo.dwXSize = 300;
-	//StartupInfo.dwYSize = 300;  //dw ~ 는 사실 잘 쓰이지 않습니다.
-
-	//StartupInfo.wShowWindow = SW_HIDE;
-
-	//StartupInfo.lpTitle = _T(" Child process! ");
-
-	//BOOL tf = CreateProcess( NULL,
-	//						x264_options,
-	//						0,	// security attribute
-	//						0,	// thread attribute
-	//						FALSE,	// inherit handle
-	//						CREATE_NEW_CONSOLE | CREATE_NO_WINDOW,	// dwCreationFlags
-	//						0,	// environment
-	//						0,	// current directory
-	//						&StartupInfo,
-	//						&ProcessInfo);
-	//if( tf == TRUE )
-	//{
-	//	WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
-	//	CloseHandle( ProcessInfo.hThread);
-	//	CloseHandle( ProcessInfo.hProcess);
-	//}
-
 	CoInitialize(0);
 
 	printf("server run\n");
-
-	//hLocalFile = CreateFile(_T("local_&&_0.es"),
-	//						GENERIC_READ,
-	//						FILE_SHARE_READ,
-	//						0,
-	//						OPEN_EXISTING,
-	//						FILE_ATTRIBUTE_NORMAL,
-	//						0);
 
 	// 원격함수호출에 대한 프로토콜을 설정한다.
 	RPC_STATUS status = RpcServerUseProtseqEp(
@@ -138,14 +81,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		CoUninitialize();
 		return -1;
 	}
-
-	// IDL 인터페이스를 등록한다.
-	// interface_h.h 파일에 등록할 인터페이스가 선언되어 있다.
-	//status = RpcServerRegisterIf(InterfaceName_v1_0_s_ifspec, NULL, NULL);
-	//if (status != RPC_S_OK) {
-	//	printf ("RpcServerRegisterIf() 실패 \n");
-	//	return -1;
-	//}
 
 	status = RpcServerRegisterIfEx(   
 							InterfaceName_v1_0_s_ifspec, // Interface to register.    
