@@ -23,10 +23,8 @@ CNullVideoRenderer::CNullVideoRenderer(LPUNKNOWN pUnk, HRESULT* phr)
 	GetModuleFileName(0, path, MAX_PATH);
 	_splitpath_s( path, drive, _MAX_DRIVE, dir, _MAX_DIR, fname, _MAX_FNAME, ext, _MAX_EXT );
 	sprintf_s(path,MAX_PATH,"%s%s_target_.yuv",drive,dir);
-	//sprintf_s(path,MAX_PATH,"_target_.yuv");
 
 	m_Targetfile = CreateFile(
-								//NAME("_target_.yuv"),
 								path,
 								GENERIC_WRITE,
 								0,
@@ -144,8 +142,8 @@ HRESULT CNullVideoRenderer::DoRenderSample(IMediaSample* pSample)
 	}
 
 	DWORD dwWritten = 0;
-	if( m_Targetfile != INVALID_HANDLE_VALUE && m_fmr_cnt < 500 )
-	//if( m_Targetfile != INVALID_HANDLE_VALUE )
+	//if( m_Targetfile != INVALID_HANDLE_VALUE && m_fmr_cnt < 500 )	// testing only
+	if( m_Targetfile != INVALID_HANDLE_VALUE )
 	{
 		int luma = bmiHeader.biWidth * bmiHeader.biHeight;
 		int u_size = luma/4;
@@ -157,7 +155,7 @@ HRESULT CNullVideoRenderer::DoRenderSample(IMediaSample* pSample)
 		WriteFile(m_Targetfile,u_data,u_size,&dwWritten,0);
 		WriteFile(m_Targetfile,v_data,u_size,&dwWritten,0);
 
-		m_fmr_cnt++;
+		//m_fmr_cnt++;
 	}
 
 	return S_OK;
