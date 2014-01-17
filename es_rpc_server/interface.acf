@@ -1,5 +1,0 @@
-
-interface InterfaceName
-{
-	[async] AsyncFunc();
-}
